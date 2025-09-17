@@ -7,14 +7,15 @@ Welcome to the complete documentation for ValidateIt, an AI-powered business ide
 1. [Project Overview](#project-overview)
 2. [System Architecture](#system-architecture)
 3. [Installation & Setup](#installation--setup)
-4. [Core Services](#core-services)
-5. [Authentication System](#authentication-system)
-6. [Database Structure](#database-structure)
-7. [Component Documentation](#component-documentation)
-8. [API Integration](#api-integration)
-9. [Security & Best Practices](#security--best-practices)
-10. [Troubleshooting](#troubleshooting)
-11. [Contribution Guidelines](#contribution-guidelines)
+4. [Configuration](#configuration)
+5. [Core Services](#core-services)
+6. [Authentication System](#authentication-system)
+7. [Database Structure](#database-structure)
+8. [Component Documentation](#component-documentation)
+9. [API Integration](#api-integration)
+10. [Security & Best Practices](#security--best-practices)
+11. [Troubleshooting](#troubleshooting)
+12. [Contribution Guidelines](#contribution-guidelines)
 
 ## Project Overview
 
@@ -46,6 +47,16 @@ The system is designed with a component-based architecture for maintainability, 
 ## Installation & Setup
 
 See [INSTALLATION.md](./INSTALLATION.md) for complete setup instructions.
+
+## Configuration
+
+ValidateIt uses environment variables and a centralized constants system for application-wide configuration. The primary configuration includes:
+
+- **API Keys**: Firebase, NewsAPI, Gemini AI
+- **Question Limits**: Configurable limit on the number of questions per user
+- **Application Settings**: Various app-wide settings
+
+See [CONFIGURATION.md](./CONFIGURATION.md) for detailed configuration documentation.
 
 ## Core Services
 

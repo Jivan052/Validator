@@ -111,13 +111,13 @@ Increments a user's question count by one, implementing batched updates for perf
 - Implements a batching mechanism to reduce database writes
 - Groups multiple increment operations within a 2-second window
 
-#### `checkUserQuestionLimit(userId, limit = 5)`
+#### `checkUserQuestionLimit(userId, limit = QUESTION_LIMIT)`
 
 Checks if a user has exceeded their question limit.
 
 **Parameters:**
 - `userId`: The ID of the authenticated user
-- `limit`: The maximum allowed questions (default: 5)
+- `limit`: The maximum allowed questions (default: from config/constants.js)
 
 **Returns:** Promise that resolves to a boolean indicating if limit is exceeded
 

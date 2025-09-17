@@ -8,7 +8,7 @@ A Web application that helps users validate business ideas using AI analysis and
 - **Idea Submission**: Submit your business ideas for analysis
 - **NewsAPI Integration**: Automatic extraction of keywords and fetching of relevant news articles
 - **Gemini AI Analysis**: Comprehensive analysis of your idea including market analysis, trends, execution suggestions, and risks
-- **Follow-up Q&A**: Ask additional questions about your idea with context-aware AI responses
+- **Follow-up Q&A**: Ask additional questions about your idea with context-aware AI responses (configurable question limit)
 - **Saved Projects**: Access all your previously submitted ideas and analyses
 
 ## Documentation
@@ -16,6 +16,7 @@ A Web application that helps users validate business ideas using AI analysis and
 For detailed documentation about different aspects of the application, refer to the following guides:
 
 - [Installation Guide](./documentation/INSTALLATION.md) - Setup and environment configuration
+- [Configuration Guide](./documentation/CONFIGURATION.md) - Environment variables and application settings
 - [Components Documentation](./documentation/COMPONENTS.md) - React component structure and usage
 - [Services Documentation](./documentation/SERVICES.md) - API services and utilities
 - [Authentication Guide](./documentation/AUTHENTICATION.md) - Authentication system details
@@ -70,6 +71,9 @@ For detailed documentation about different aspects of the application, refer to 
 
    # Gemini AI Configuration
    VITE_GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+
+   # Application Configuration
+   VITE_QUESTION_LIMIT=10
    ```
 
 4. Start the development server:
