@@ -1,6 +1,6 @@
 # ValidateIt
 
-A React + Firebase web application that helps users validate business ideas using AI analysis and real-time news data.
+A Web application that helps users validate business ideas using AI analysis and real-time news data.
 
 ## Features
 
