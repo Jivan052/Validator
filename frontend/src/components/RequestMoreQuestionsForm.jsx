@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { useAuth } from '../contexts/AuthContext';
+import { QUESTION_LIMIT } from '../config/constants';
 
 const RequestMoreQuestionsForm = ({ onClose }) => {
   const { currentUser } = useAuth();
@@ -46,7 +47,7 @@ const RequestMoreQuestionsForm = ({ onClose }) => {
       <div className="bg-indigo-600 p-6">
         <h2 className="text-xl font-bold text-white">Request More Questions</h2>
         <p className="text-indigo-100 mt-1">
-          You've reached your limit of 5 follow-up questions.
+          You've reached your limit of {QUESTION_LIMIT} follow-up questions.
         </p>
       </div>
 

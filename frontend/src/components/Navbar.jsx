@@ -3,13 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUserQuestionCount } from "../services/firestoreService";
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
+import { QUESTION_LIMIT } from "../config/constants";
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(0);
-  const questionLimit = 10; // Define the question limit
   
   // Fetch the user's question count when the component loads
   useEffect(() => {
@@ -76,7 +76,7 @@ const Navbar = () => {
                     <ChatBubbleBottomCenterTextIcon className="h-4 w-4 text-indigo-300" />
                     <div>
                       <span className="text-white font-medium text-xs">{questionCount}</span>
-                      <span className="text-indigo-300 text-xs">/{questionLimit}</span>
+                      <span className="text-indigo-300 text-xs">/{QUESTION_LIMIT}</span>
                       <span className="text-indigo-300 text-xs ml-1">questions</span>
                     </div>
                   </div>
@@ -186,7 +186,7 @@ const Navbar = () => {
                       <ChatBubbleBottomCenterTextIcon className="h-4 w-4 text-indigo-300" />
                       <div>
                         <span className="text-white font-medium text-xs">{questionCount}</span>
-                        <span className="text-indigo-300 text-xs">/{questionLimit}</span>
+                        <span className="text-indigo-300 text-xs">/{QUESTION_LIMIT}</span>
                         <span className="text-indigo-300 text-xs ml-1">questions used</span>
                       </div>
                     </div>

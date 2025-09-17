@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { addIdea, updateIdeaWithAnalysis, checkUserQuestionLimit, getUserQuestionCount } from "../services/firestoreService";
 import { extractKeywords, analyzeIdeaWithNews } from "../services/geminiService";
 import { getNewsArticles } from "../services/newsApiService";
+import { QUESTION_LIMIT } from "../config/constants";
 
 const NewIdea = () => {
   const { currentUser } = useAuth();
@@ -18,7 +19,6 @@ const NewIdea = () => {
   const progressTimerRef = useRef(null);
   const [userQuestionCount, setUserQuestionCount] = useState(0);
   const [questionLimitReached, setQuestionLimitReached] = useState(false);
-  const questionLimit = 5; // Consistent with other files
   
   // Effect to check the user's question count on load
   useEffect(() => {
@@ -96,7 +96,7 @@ const NewIdea = () => {
     try {
       const limitReached = await checkUserQuestionLimit(currentUser.uid);
       if (limitReached) {
-        return setError("You've reached your question limit of " + questionLimit + ". Please request more questions before submitting a new idea for validation.");
+        return setError("You've reached your question limit of " + QUESTION_LIMIT + ". Please request more questions before submitting a new idea for validation.");
       }
     } catch (limitError) {
       console.error("Error checking question limit:", limitError);
@@ -174,7 +174,7 @@ const NewIdea = () => {
       // Increment the user's question count
       const updatedCount = await getUserQuestionCount(currentUser.uid);
       setUserQuestionCount(updatedCount);
-      setQuestionLimitReached(updatedCount >= questionLimit);
+      setQuestionLimitReached(updatedCount >= QUESTION_LIMIT);
       
       setProgress(100);
       setStatusMessage("Analysis complete!");
@@ -215,7 +215,7 @@ const NewIdea = () => {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm text-amber-700">
-                      <strong>Question limit reached:</strong> You've used all {userQuestionCount} of your {questionLimit} allowed follow-up questions.
+                      <strong>Question limit reached:</strong> You've used all {userQuestionCount} of your {QUESTION_LIMIT} allowed follow-up questions.
                     </p>
                     <div className="mt-2">
                       <p className="text-sm text-amber-700">
@@ -262,7 +262,7 @@ const NewIdea = () => {
                   <div className="flex justify-between items-center">
                     <div className="text-sm text-gray-500">
                       <span className="font-medium text-indigo-600">{userQuestionCount}</span>
-                      <span className="text-gray-500">/{questionLimit} questions used</span>
+                      <span className="text-gray-500">/{QUESTION_LIMIT} questions used</span>
                     </div>
                     <button
                       type="submit"

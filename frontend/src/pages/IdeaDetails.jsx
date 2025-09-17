@@ -16,6 +16,7 @@ import KeyTrends from "../components/charts/KeyTrends";
 import CompetitorsList from "../components/charts/CompetitorsList";
 import RequestMoreQuestionsForm from "../components/RequestMoreQuestionsForm";
 import { transformAnalysisFormat } from "../utils/analysisTransformer";
+import { QUESTION_LIMIT } from "../config/constants";
 
 const IdeaDetails = () => {
   const { ideaId } = useParams();
@@ -28,7 +29,6 @@ const IdeaDetails = () => {
   const [questionLimitReached, setQuestionLimitReached] = useState(false);
   const [showRequestForm, setShowRequestForm] = useState(false);
   const [userQuestionCount, setUserQuestionCount] = useState(0);
-  const questionLimit = 5; // Define the limit as a constant
   
   // Transform analysis data to new format if needed
   const analysisData = useMemo(() => {
@@ -55,7 +55,7 @@ const IdeaDetails = () => {
         setUserQuestionCount(count);
         
         // Check if the user has reached their question limit
-        setQuestionLimitReached(count >= questionLimit);
+        setQuestionLimitReached(count >= QUESTION_LIMIT);
         
         setLoading(false);
       } catch (error) {
@@ -66,7 +66,7 @@ const IdeaDetails = () => {
     };
 
     fetchIdea();
-  }, [ideaId, currentUser, questionLimit]);
+  }, [ideaId, currentUser]);
 
   const handleSubmitQuestion = async (e) => {
     e.preventDefault();
@@ -121,7 +121,7 @@ const IdeaDetails = () => {
       // Update the user's question count and check if they've reached the limit
       const count = await getUserQuestionCount(currentUser.uid);
       setUserQuestionCount(count);
-      setQuestionLimitReached(count >= questionLimit);
+      setQuestionLimitReached(count >= QUESTION_LIMIT);
     } catch (error) {
       console.error("Error asking follow-up question:", error);
       setError("Failed to process your question. Please try again later.");
@@ -346,7 +346,7 @@ const IdeaDetails = () => {
                 <ChatBubbleBottomCenterTextIcon className="h-5 w-5 text-indigo-500" />
                 <div>
                   <span className="font-medium text-indigo-600">{userQuestionCount}</span>
-                  <span className="text-gray-600">/{questionLimit} questions used</span>
+                  <span className="text-gray-600">/{QUESTION_LIMIT} questions used</span>
                 </div>
               </div>
             </div>
@@ -366,7 +366,7 @@ const IdeaDetails = () => {
                       </div>
                       <div className="ml-3">
                         <p className="text-sm text-amber-700">
-                          <strong>Question limit reached:</strong> You've used all {userQuestionCount} of your {questionLimit} allowed follow-up questions across all ideas.
+                          <strong>Question limit reached:</strong> You've used all {userQuestionCount} of your {QUESTION_LIMIT} allowed follow-up questions across all ideas.
                         </p>
                         <div className="mt-2">
                           <button
@@ -404,7 +404,7 @@ const IdeaDetails = () => {
                       {!questionLimitReached ? (
                         <div className="flex items-center text-sm">
                           <span className="font-medium text-indigo-600">{userQuestionCount}</span>
-                          <span className="text-gray-500">/{questionLimit} questions used across all ideas</span>
+                          <span className="text-gray-500">/{QUESTION_LIMIT} questions used across all ideas</span>
                           <span className="mx-2 text-gray-400">|</span>
                           <span className="text-gray-500">
                             {idea?.questions?.length || 0} questions on this idea
@@ -412,7 +412,7 @@ const IdeaDetails = () => {
                         </div>
                       ) : (
                         <div className="text-sm font-medium text-red-600">
-                          Limit reached: {userQuestionCount}/{questionLimit}
+                          Limit reached: {userQuestionCount}/{QUESTION_LIMIT}
                         </div>
                       )}
                     </div>

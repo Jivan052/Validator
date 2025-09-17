@@ -2,6 +2,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { checkUserQuestionLimit } from "../services/firestoreService";
+import { QUESTION_LIMIT } from "../config/constants";
 
 const Home = () => {
   const { currentUser } = useAuth();

@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 import secureStorage from "../utils/secureStorage";
+import { QUESTION_LIMIT } from "../config/constants";
 
 // Collection names
 const IDEAS_COLLECTION = "ideas";
@@ -272,7 +273,7 @@ export const incrementUserQuestionCount = async (userId) => {
 };
 
 // Check if user has exceeded question limit using cached count when available
-export const checkUserQuestionLimit = async (userId, limit = 10) => {
+export const checkUserQuestionLimit = async (userId, limit = QUESTION_LIMIT) => {
   try {
     // Check secure storage first for fastest response
     const cacheKey = `user_${userId}_questionCount`;
