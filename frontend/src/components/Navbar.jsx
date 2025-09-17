@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(0);
-  const questionLimit = 5; // Define the question limit
+  const questionLimit = 10; // Define the question limit
   
   // Fetch the user's question count when the component loads
   useEffect(() => {

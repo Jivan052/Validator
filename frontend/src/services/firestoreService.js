@@ -272,7 +272,7 @@ export const incrementUserQuestionCount = async (userId) => {
 };
 
 // Check if user has exceeded question limit using cached count when available
-export const checkUserQuestionLimit = async (userId, limit = 5) => {
+export const checkUserQuestionLimit = async (userId, limit = 10) => {
   try {
     // Check secure storage first for fastest response
     const cacheKey = `user_${userId}_questionCount`;
